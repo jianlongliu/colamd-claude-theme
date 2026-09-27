@@ -1,17 +1,17 @@
 :root {
-  --bg-color: #f5f4ef;
+  --bg-color: #f0eee6;          /* Anthropic --color-gray-150：Claude 界面的奶油底 */
   --text-color: #33312e;
   --text-secondary: #6b675e;
   --text-muted: #98938a;
-  --border-color: #e3ded4;
+  --border-color: #dedcd1;
   --link-color: #c15f3c;
   --code-bg: rgba(200, 120, 80, 0.1);
-  --code-block-bg: #efece3;
+  --code-block-bg: #e8e6dc;
   --code-block-text: #4f4a40;
   --blockquote-border: #d97757;
-  --blockquote-bg: #f3f0e8;
-  --table-border: #e3ded4;
-  --table-header-bg: #eeebe2;
+  --blockquote-bg: #faf9f5;
+  --table-border: #dedcd1;
+  --table-header-bg: #e8e6dc;
   --selection-bg: rgba(217, 119, 87, 0.16);
   --search-match-bg: rgba(217, 119, 87, 0.22);
   --search-match-current-bg: rgba(217, 119, 87, 0.45);

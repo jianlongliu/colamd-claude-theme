@@ -6,24 +6,30 @@
 
 ```sh
 mkdir -p ~/.colamd/themes
-cp claude.css ~/.colamd/themes/
+cp Claude.css ~/.colamd/themes/
 ```
 
-然后**重启 ColaMD**——Theme 菜单里的自定义主题项是在 App 启动时扫描 `~/.colamd/themes/` 生成的，新文件不重启不会出现。重启后在 Theme 菜单里选 `claude`。
+然后**重启 ColaMD**——Theme 菜单里的自定义主题项是在 App 启动时扫描 `~/.colamd/themes/` 生成的，新文件不重启不会出现。重启后在 Theme 菜单里选 `Claude`。**菜单项显示的就是文件名（去掉 `.css`）**，大小写原样保留，所以想要显示成 `Claude` 就得把文件命名成 `Claude.css`。
 
-改完文件内容不必重启：重新点一次 Theme 菜单里的 `claude` 即可（点击时才读文件）。
+改完文件内容不必重启：重新点一次 Theme 菜单里的 `Claude` 即可（点击时才读文件）。
+
+命名相关的坑：ColaMD 用**文件名**做主题标识（`localStorage["colamd-theme"] = "custom:Claude.css"`），所以**重命名文件等于换了一个主题**——旧的选择记录会失效，启动时找不到对应文件，页面会退回无主题样式，重新在菜单里选一次即可。
 
 ## 外观
 
+底色用的是 Anthropic 设计 token 里的 `--color-gray-150`（`#f0eee6`，Claude 界面的奶油底），相邻表面按同一套官方灰阶错开一档，免得代码块糊进背景里。
+
 | 元素 | 颜色 |
 |---|---|
-| 背景 | `#f5f4ef` |
+| 背景 | `#f0eee6`（`--color-gray-150`） |
 | 正文 | `#33312e` |
 | 次级文字 / 弱化文字 | `#6b675e` / `#98938a` |
 | 链接 | `#c15f3c` |
-| 引用块左边线 | `#d97757` |
+| 引用块左边线 | `#d97757`（Anthropic `--color-clay`） |
 | 行内代码底 | `rgba(200, 120, 80, 0.1)` |
-| 代码块底 / 字 | `#efece3` / `#4f4a40` |
+| 代码块底 / 字 | `#e8e6dc`（`--color-gray-200`）/ `#4f4a40` |
+| 引用块底 | `#faf9f5`（`--color-gray-050`） |
+| 表格表头 / 描边 | `#e8e6dc` / `#dedcd1` |
 | 高亮 | `#f7e7d5` |
 | 一级标题 | `#c44b2b`（固定，覆盖正文色） |
 
