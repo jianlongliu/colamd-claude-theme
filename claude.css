@@ -1,0 +1,41 @@
+:root {
+  --bg-color: #f5f4ef;
+  --text-color: #33312e;
+  --text-secondary: #6b675e;
+  --text-muted: #98938a;
+  --border-color: #e3ded4;
+  --link-color: #c15f3c;
+  --code-bg: rgba(200, 120, 80, 0.1);
+  --code-block-bg: #efece3;
+  --code-block-text: #4f4a40;
+  --blockquote-border: #d97757;
+  --blockquote-bg: #f3f0e8;
+  --table-border: #e3ded4;
+  --table-header-bg: #eeebe2;
+  --selection-bg: rgba(217, 119, 87, 0.16);
+  --search-match-bg: rgba(217, 119, 87, 0.22);
+  --search-match-current-bg: rgba(217, 119, 87, 0.45);
+  --highlight-bg: #f7e7d5;
+}
+
+/* 一级标题固定为默认主题的红 */
+#editor .ProseMirror h1 {
+  color: #c44b2b !important;
+}
+
+/* 代码块换等宽字体：Google Sans Code 的 {} 太窄小。
+   必须用 @font-face 直接指向字体文件——按族名请求会被 fontconfig 劫持成
+   GoogleSansCode Material（见 colamd-notes.md 的坑清单）。 */
+@font-face {
+  font-family: "ColaMD Code";
+  src: url("file:///usr/share/fonts/TTF/JetBrainsMonoNerdFont-Regular.ttf");
+}
+@font-face {
+  font-family: "ColaMD Code CN";
+  src: url("file:///usr/share/fonts/maple/MapleMonoNormalNL-NF-CN-Medium.ttf");
+}
+#editor .ProseMirror code,
+#editor .ProseMirror pre,
+#editor .ProseMirror pre code {
+  font-family: "ColaMD Code", "ColaMD Code CN", monospace !important;
+}
