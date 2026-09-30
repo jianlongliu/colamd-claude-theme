@@ -18,14 +18,36 @@
   --highlight-bg: #f7e7d5;
 }
 
-/* 一级标题固定为默认主题的红 */
-#editor .ProseMirror h1 {
+/* 代码块的语法高亮色不是写死的：ColaMD 按 --code-block-bg 的明暗给 body
+   挂 body.code-palette-light，再由 --code-* 变量决定各 token 画什么色
+   （applyCodePalette()）。本主题的块底 #e8e6dc 亮度 0.90，落在浅色那一套上，
+   而内置那套是 GitHub Light 的冷色（keyword #cf222e / number #0550ae /
+   function #8250df / property #116329），压在暖米纸面上像贴错了图，
+   所以整条覆盖成暖色板：关键词用与 h1 同族的陶土红，字符串与类型走棕金，
+   注释暖灰，函数留一个暖紫当点缀。
+   运算符、标点、括号刻意不上色（跟随代码块正文色），整块才不会花。 */
+body.code-palette-light {
+  --code-keyword: #b8452a;   /* 陶土深红，与 h1 #c44b2b 同族 */
+  --code-string: #6b5b32;    /* 棕金 */
+  --code-comment: #8a8478;   /* 暖灰 */
+  --code-number: #9c5a1e;    /* 橙棕 */
+  --code-function: #7d5a9e;  /* 暖紫（唯一的冷点缀） */
+  --code-type: #8a5a2b;      /* 深棕 */
+  --code-property: #4f6b3a;  /* 橄榄绿 */
+  --code-meta: #6b6072;      /* 灰紫 */
+}
+
+/* 一级标题固定为 Claude 的红。行类名随编辑器内核走：2.7 起是 CodeMirror 的
+   .cm-md-atxheading1~6，2.6 及更早的 Milkdown 才是 .ProseMirror h1。 */
+#editor .cm-content .cm-md-atxheading1 {
   color: #c44b2b !important;
 }
 
 /* 代码块换等宽字体：Google Sans Code 的 {} 太窄小。
    必须用 @font-face 直接指向字体文件——按族名请求会被 fontconfig 劫持成
-   GoogleSansCode Material（见 colamd-notes.md 的坑清单）。 */
+   另一个字体（fc-match "JetBrains Mono" 返回的不是 JetBrains 即中招）。
+   src 换成自己机器上的路径，fc-list 可以查；路径写错不报错，只是静默回退
+   到 monospace。 */
 @font-face {
   font-family: "ColaMD Code";
   src: url("file:///usr/share/fonts/TTF/JetBrainsMonoNerdFont-Regular.ttf");
@@ -34,8 +56,18 @@
   font-family: "ColaMD Code CN";
   src: url("file:///usr/share/fonts/maple/MapleMonoNormalNL-NF-CN-Medium.ttf");
 }
-#editor .ProseMirror code,
-#editor .ProseMirror pre,
-#editor .ProseMirror pre code {
+/* 2.7 的类名：代码块 .cm-md-codeblock、行内代码 .cm-md-inlinecode。
+   代码块里的 token 是它的子节点，字体要连子节点一起压，否则 span 会抢回
+   自己的族。 */
+#editor .cm-content .cm-md-codeblock,
+#editor .cm-content .cm-md-codeblock *,
+#editor .cm-content .cm-md-inlinecode {
   font-family: "ColaMD Code", "ColaMD Code CN", monospace !important;
+}
+
+/* 行内代码的字色：内置主题是各自写死的（elegant #c44b2b、bear #d43d2a…），
+   自定义主题没有 theme-* 类可挂，不补这条就只有 --code-bg 的底、字随正文。
+   取与代码关键词同族的陶土红，压在淡橘底上就是 Claude 那种句子里夹一小块暖色。 */
+#editor .cm-content .cm-md-inlinecode {
+  color: #b8452a;
 }
