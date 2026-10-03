@@ -1,5 +1,7 @@
 # ColaMD Claude 主题
 
+![预览](assets/preview.jpg)
+
 给 [ColaMD](https://colamd.app)（Electron + CodeMirror 的 Markdown 阅读/编辑器）用的浅色主题：暖米色纸面 + 陶土橙强调色，取色自 Anthropic Claude 的界面风格。
 
 ## 安装
